@@ -1,73 +1,264 @@
-# Section 1: Mechanics I
+# Task 01 – Projectile Motion
 
-## 1. Projectile Motion
+## Problem Statement
 
-A projectile is fired from the ground with an initial velocity of $100  \text{ m/s}$ at an angle of $37^\circ$ above the horizontal. Assume no air resistance.
+A projectile is fired from the ground with initial speed $v_0 = 100 \text{ m/s}$ at angle $\theta = 37^\circ$ above the horizontal. Air resistance is neglected.
 
-* Derive the differential equations of motion in the horizontal and vertical directions.
+Required:
 
-* Determine the time of flight.
+- derive the differential equations of motion in the horizontal and vertical directions,
+- determine the time of flight,
+- determine the maximum height,
+- determine the range.
 
-* Determine the maximum height.
+## Theory
 
-* Determine the range.
+For ideal projectile motion, the only force acting on the projectile is gravity. Therefore the acceleration is constant and directed downward.
 
-## 2. Range Optimization
+Using Cartesian coordinates:
 
-For projectile motion, show analytically that the maximum range $R(\theta)=\frac{v_0^2 \sin(2\theta)}{g}
-$ for a given initial velocity is achieved at a launch angle of $45^\circ$.
+- $x$ is the horizontal coordinate,
+- $y$ is the vertical coordinate.
 
-## 3. Path Intersection
-
-Alice is moving along a path described by $A(t) = (2+t, 8-3t)$ and Bob is moving along a path $B(t) = (2t-1, 2t+2)$. Determine if their paths intersect. If yes, determine when and where they will collide. If not, determine the minimum distance between them and when it occurs.
-
-## 4. Vector Calculus
-
-The position of an object is given by $\vec{r}(t) = (3t^2)\hat{i} + (5t - 8t^2)\hat{j}$. Find the object's velocity and acceleration vectors as a function of time.
-
-## 5. Relative Velocity
-
-A river flows east at $2 \text{m/s}$. A boat that can travel at $5 \text{m/s}$ in still water wants to go directly north across the river. In what direction (angle) should it head? How long will it take to cross the river if it's 200 meters wide?
-
-## 6. Variable Velocity
-
-An object's velocity is given by $v(t) = t^2 + 2t - 5$. If the object was at $x=4$ at $t=0$, what is its position and acceleration at time $t=3$?
-
-## 7. Elimination of time and interpretation of acceleration
-
-The path equation is given in parametric form:
+The acceleration vector is
 
 $$
-x(t)=2t^2, \qquad y(t)=3t^3
+\vec a = (0,-g)
 $$
 
-* Eliminate the parameter $t$.
-* Draw the trajectory.
-* Calculate $\vec v(t)$, $|\vec v(t)|$, $\vec a(t)$ and $|\vec a(t)|$.
-* Is the acceleration constant?
+with $g \approx 9.81 \text{ m/s}^2$.
 
-
-## 8. Circular Motion
-
-Calculate the centripetal acceleration of a person standing on the Earth's equator. The Earth's radius is approximately 6378 km.
-
-## 9. Momentum Comparison
-
-Which has greater momentum: a 2-gram fly flying at $10$ m/s or a 60-gram tennis ball moving at $1$ m/s?
-
-
-## 10. Kinematics
-
-Point M moves according to the equation:
+The initial velocity components are
 
 $$
-\vec{r}(t) = (a \cos(\omega t), b \sin(\omega t), bt)
+v_{0x} = v_0 \cos\theta
 $$
 
-where $a, b, \omega$ are positive constants.
+and
 
-a) Find the equation of the point's trajectory,
+$$
+v_{0y} = v_0 \sin\theta
+$$
 
-b) Compute the path length of the point from time $t=0$ to $t=t_0$,
+The position functions are obtained by integrating the acceleration.
 
-c) Draw the trajectory of this point using Python or interactive HTML. Discuss special cases.
+## Step-by-Step Solution
+
+### 1. Differential equations of motion
+
+In the horizontal direction no force acts, so
+
+$$
+m \ddot x = 0
+$$
+
+Hence
+
+$$
+\ddot x = 0
+$$
+
+In the vertical direction gravity acts downward, so
+
+$$
+m \ddot y = -mg
+$$
+
+Hence
+
+$$
+\ddot y = -g
+$$
+
+These are the differential equations of motion.
+
+---
+
+### 2. Velocity functions
+
+Integrating once gives the velocity components:
+
+$$
+\dot x(t) = v_{0x} = v_0 \cos\theta
+$$
+
+$$
+\dot y(t) = v_{0y} - gt = v_0 \sin\theta - gt
+$$
+
+With $v_0 = 100$ and $\theta = 37^\circ$,
+
+$$
+v_{0x} = 100 \cos 37^\circ \approx 79.86 \text{ m/s}
+$$
+
+$$
+v_{0y} = 100 \sin 37^\circ \approx 60.18 \text{ m/s}
+$$
+
+---
+
+### 3. Position functions
+
+Assuming the projectile starts from the origin,
+
+$$
+x(0)=0, \qquad y(0)=0
+$$
+
+Integrating again gives
+
+$$
+x(t) = v_0 \cos\theta \, t
+$$
+
+$$
+y(t) = v_0 \sin\theta \, t - \frac{1}{2}gt^2
+$$
+
+So here
+
+$$
+x(t) = 100 \cos 37^\circ \, t
+$$
+
+$$
+y(t) = 100 \sin 37^\circ \, t - \frac{1}{2}(9.81)t^2
+$$
+
+---
+
+### 4. Time of flight
+
+The projectile returns to the ground when $y(t)=0$.
+
+Thus
+
+$$
+v_0 \sin\theta \, t - \frac{1}{2}gt^2 = 0
+$$
+
+Factor out $t$:
+
+$$
+t \left( v_0 \sin\theta - \frac{1}{2}gt \right)=0
+$$
+
+One solution is $t=0$, the launch instant. The nontrivial solution is
+
+$$
+t_f = \frac{2v_0 \sin\theta}{g}
+$$
+
+Substituting the values:
+
+$$
+t_f = \frac{2(100)\sin 37^\circ}{9.81}
+$$
+
+$$
+t_f \approx \frac{200(0.6018)}{9.81}
+\approx 12.27 \text{ s}
+$$
+
+---
+
+### 5. Maximum height
+
+At the highest point the vertical velocity is zero:
+
+$$
+\dot y(t) = v_0 \sin\theta - gt = 0
+$$
+
+Thus the time to reach the highest point is
+
+$$
+t_h = \frac{v_0 \sin\theta}{g}
+$$
+
+Substituting into $y(t)$ gives the maximum height:
+
+$$
+H_{\max} = v_0 \sin\theta \left( \frac{v_0 \sin\theta}{g} \right) - \frac{1}{2}g \left( \frac{v_0 \sin\theta}{g} \right)^2
+$$
+
+After simplification,
+
+$$
+H_{\max} = \frac{v_0^2 \sin^2\theta}{2g}
+$$
+
+Now substitute the data:
+
+$$
+H_{\max} = \frac{100^2 \sin^2 37^\circ}{2(9.81)}
+$$
+
+$$
+H_{\max} \approx \frac{10000(0.6018)^2}{19.62}
+\approx 1846 \text{ m}
+$$
+
+---
+
+### 6. Range
+
+The range is the horizontal distance traveled during the total flight time:
+
+$$
+R = x(t_f)
+$$
+
+Therefore
+
+$$
+R = v_0 \cos\theta \cdot \frac{2v_0 \sin\theta}{g}
+$$
+
+Using $2\sin\theta\cos\theta = \sin 2\theta$:
+
+$$
+R = \frac{v_0^2 \sin 2\theta}{g}
+$$
+
+Substituting the values:
+
+$$
+R = \frac{100^2 \sin 74^\circ}{9.81}
+$$
+
+$$
+R \approx \frac{10000(0.9613)}{9.81}
+\approx 9799 \text{ m}
+$$
+
+## Final Result
+
+The differential equations of motion are
+
+$$
+\ddot x = 0, \qquad \ddot y = -g
+$$
+
+The time of flight is
+
+$$
+t_f \approx 12.27 \text{ s}
+$$
+
+The maximum height is
+
+$$
+H_{\max} \approx 1.85 \times 10^3 \text{ m}
+$$
+
+The range is
+
+$$
+R \approx 9.80 \times 10^3 \text{ m}
+$$
+
+## Interpretation
+
+The horizontal motion is uniform because there is no horizontal acceleration. The vertical motion is uniformly accelerated downward due to gravity. The trajectory is a parabola. A large initial speed combined with a moderate launch angle produces both a long flight time and a large range.
