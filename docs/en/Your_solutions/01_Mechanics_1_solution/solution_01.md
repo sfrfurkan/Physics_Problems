@@ -1,90 +1,136 @@
-# Task 01 – Projectile Motion
+# Task 01 – Gravitational Dependence of a Simple Pendulum
 
 ## Problem Statement
 
-A projectile is fired with initial velocity $v_0 = 100 \text{ m/s}$ at angle $\theta = 37^\circ$. No air resistance.
+A simple pendulum has a period of $4 \text{ s}$ on Earth.
 
-Determine:
-- equations of motion
-- time of flight
-- maximum height
-- range
-
----
+1. Determine its period on the Moon, where the gravitational acceleration is about $\frac{1}{6}$ of Earth's.
+2. Determine the length required for a simple pendulum to have a period of exactly $1 \text{ s}$ on Earth.
 
 ## Theory
 
-Projectile motion decomposes into:
-
-- Horizontal: constant velocity
-- Vertical: constant acceleration $-g$
+For small oscillations, the period of a simple pendulum is
 
 $$
-\vec{a} = (0, -g)
+T = 2\pi \sqrt{\frac{L}{g}}
 $$
 
----
+where:
+
+- $T$ is the period,
+- $L$ is the pendulum length,
+- $g$ is the gravitational acceleration.
+
+For a fixed length, the period is proportional to $1/\sqrt{g}$.
 
 ## Step-by-Step Solution
 
-### Decomposition of velocity
+### Part 1: Period on the Moon
+
+For the same pendulum length,
 
 $$
-v_{0x} = v_0 \cos \theta, \quad v_{0y} = v_0 \sin \theta
+T \propto \frac{1}{\sqrt{g}}
 $$
 
-Using $\cos 37^\circ \approx 0.8$, $\sin 37^\circ \approx 0.6$:
+Therefore,
 
 $$
-v_{0x} = 80 \text{ m/s}, \quad v_{0y} = 60 \text{ m/s}
+\frac{T_{\text{Moon}}}{T_{\text{Earth}}} = \sqrt{\frac{g_{\text{Earth}}}{g_{\text{Moon}}}}
 $$
 
----
-
-### Differential equations
+Since
 
 $$
-\frac{d^2 x}{dt^2} = 0
+g_{\text{Moon}} = \frac{1}{6} g_{\text{Earth}}
+$$
+
+it follows that
+
+$$
+\frac{T_{\text{Moon}}}{T_{\text{Earth}}} = \sqrt{\frac{g_{\text{Earth}}}{g_{\text{Earth}}/6}} = \sqrt{6}
+$$
+
+Thus,
+
+$$
+T_{\text{Moon}} = T_{\text{Earth}} \sqrt{6}
+$$
+
+Substituting $T_{\text{Earth}} = 4 \text{ s}$,
+
+$$
+T_{\text{Moon}} = 4\sqrt{6} \text{ s}
+$$
+
+Numerically,
+
+$$
+T_{\text{Moon}} \approx 4 \cdot 2.449 = 9.80 \text{ s}
+$$
+
+### Part 2: Length for a Period of 1 Second on Earth
+
+Starting from
+
+$$
+T = 2\pi \sqrt{\frac{L}{g}}
+$$
+
+solve for $L$:
+
+$$
+\frac{T}{2\pi} = \sqrt{\frac{L}{g}}
+$$
+
+Squaring both sides gives
+
+$$
+\left(\frac{T}{2\pi}\right)^2 = \frac{L}{g}
+$$
+
+Therefore,
+
+$$
+L = g\left(\frac{T}{2\pi}\right)^2
+$$
+
+Using $T = 1 \text{ s}$ and $g = 9.81 \text{ m/s}^2$,
+
+$$
+L = 9.81 \left(\frac{1}{2\pi}\right)^2
 $$
 
 $$
-\frac{d^2 y}{dt^2} = -g
+L = 9.81 \cdot \frac{1}{4\pi^2}
 $$
 
----
-
-### Time of flight
+Since
 
 $$
-T = \frac{2 v_{0y}}{g} = \frac{2 \cdot 60}{9.8} \approx 12.24 \text{ s}
+4\pi^2 \approx 39.48
 $$
 
----
-
-### Maximum height
+then
 
 $$
-H = \frac{v_{0y}^2}{2g} = \frac{60^2}{2 \cdot 9.8} \approx 183.7 \text{ m}
+L \approx \frac{9.81}{39.48} \approx 0.248 \text{ m}
 $$
-
----
-
-### Range
-
-$$
-R = v_{0x} \cdot T = 80 \cdot 12.24 \approx 979.2 \text{ m}
-$$
-
----
 
 ## Final Result
 
-- Time: $12.24 \text{ s}$
-- Height: $183.7 \text{ m}$
-- Range: $979.2 \text{ m}$
+1. Period on the Moon:
 
----
+$$
+T_{\text{Moon}} = 4\sqrt{6} \text{ s} \approx 9.80 \text{ s}
+$$
+
+2. Required length for $T = 1 \text{ s}$ on Earth:
+
+$$
+L \approx 0.248 \text{ m}
+$$
 
 ## Interpretation
 
-Horizontal and vertical motions are independent. Gravity only affects vertical motion.
+The pendulum swings more slowly on the Moon because the gravitational acceleration is weaker. A weaker restoring force leads to a longer period. The second result shows that a pendulum with a period of $1 \text{ s}$ must be relatively short, about $25 \text{ cm}$.
